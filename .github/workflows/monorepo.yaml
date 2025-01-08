@@ -1,0 +1,31 @@
+name: Run Command for Affected Folders
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-for-affected-folders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: List modified files
+        run: |
+          git fetch origin ${{ github.event.before }} --depth=1
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} > modified_files.txt
+
+      - name: Extract top-level folders
+        id: extract_folders
+        run: |
+          awk -F/ '{print $1}' modified_files.txt | sort | uniq > folders.txt
+
+      - name: Run command for each folder
+        run: |
+          while read folder; do
+            echo "Running command for folder: $folder"
+            # Replace 'echo' with the actual command you want to run
+            echo "Command for $folder"
+          done < folders.txt
