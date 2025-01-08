@@ -25,7 +25,15 @@ jobs:
       - name: Run command for each folder
         run: |
           while read folder; do
-            echo "Running command for folder: $folder"
-            # Replace 'echo' with the actual command you want to run
-            echo "Command for $folder"
+            case $folder in
+            [^.]*)
+              echo "Triggering scan workflow for $folder"
+              gh workflow run scan-folder.yaml -f folder=$folder
+              ;;
+            *)
+              echo "Not triggering scan workflow for $folder"
+              ;;
+            esac
           done < folders.txt
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
