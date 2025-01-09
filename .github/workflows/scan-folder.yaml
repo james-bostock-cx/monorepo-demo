@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Scan code in Checkmarx One
-        uses: james-bostock-cx/ast-github-action@6ba231d77d2510ec27a60a13feeec5c8cc99c7d3
+        uses: james-bostock-cx/ast-github-action@68ab7b00cc043f8f140eb6d66df88b3bfe0cad2f
         with:
           base_uri: ${{ secrets.CX_BASE_URI }}
           cx_tenant: ${{ secrets.CX_TENANT_NAME }}
