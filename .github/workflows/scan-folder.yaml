@@ -11,6 +11,8 @@ jobs:
   run-command:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug: show inputs
+        run: echo Folder to scan: ${{ inputs.folder }}
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Scan code in Checkmarx One
