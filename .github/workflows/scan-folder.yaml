@@ -19,7 +19,7 @@ jobs:
         uses: james-bostock-cx/ast-github-action@6ba231d77d2510ec27a60a13feeec5c8cc99c7d3
         with:
           base_uri: ${{ secrets.CX_BASE_URI }}
-          cx_tenant: ${{ secrets.CX_TENANT }}
+          cx_tenant: ${{ secrets.CX_TENANT_NAME }}
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           src: ${{ inputs.folder }}
